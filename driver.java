@@ -24,9 +24,10 @@ public class driver{
 			if (opcion==1) { //Encender radio
 				System.out.println(" Hola :) ");
 				radio.onOff();
-			} else if (radio.onOff()) { //Si la radio está encendida 
+			} else if (radio.estado()) { //Si la radio está encendida 
+				System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() + "\n_______________\n");
 				if (opcion == 2) { //Cambiar AM/FM
-					radio.estado();
+					radio.cambiarFrecuencia();
 				} else if (opcion == 3) { //Siguiente emisora
 					radio.avanzar();
 				} else if (opcion == 4) { //Guardar emisora
@@ -39,7 +40,7 @@ public class driver{
 					System.out.println(" Adios :) ");
 					radio.onOff();
 				} 
-			} else if (!radio.onOff()) { //La radio está apagada
+			} else if (!radio.estado()) { //La radio está apagada
 				System.out.println(" Primero enciende la radio ");
 			} else if (opcion == 7) { //Se cierra el programa
 				System.out.println(" Vuelve pronto :) ");
