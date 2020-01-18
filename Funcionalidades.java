@@ -11,5 +11,5 @@ public interface Funcionalidades{
 	public void cambiarFrecuencia();
 	public void avanzar();
 	public void guardar(int boton);
-	public void seleccionarEmisiora(int boton);
+	public void seleccionarEmisora(int boton);
 }
