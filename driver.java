@@ -32,10 +32,10 @@ public class driver{
 					radio.avanzar();
 				} else if (opcion == 4) { //Guardar emisora
 					System.out.println("Elija el numero de boton donde se guardara: ");
-					radio.guardar(scan.next());
+					radio.guardar(scan.nextInt());
 				} else if (opcion == 5) { //Seleccionar emisora guardada
 					System.out.println("Elija el numero de boton a escuchar: ");
-					radio.seleccionarEmisora(scan.next());
+					radio.seleccionarEmisora(scan.nextInt());
 				} else { //Apagar la radio
 					System.out.println(" Adios :) ");
 					radio.onOff();
