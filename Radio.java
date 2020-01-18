@@ -29,6 +29,29 @@ public class Radio implements Funcionalidades{
 		this.favoritas = favoritas;
 	}
 
+	/*Implementación de métodos*/
+
+	public String estacionActual(){
+	}
+
+	public boolean estado(){
+	}
+
+	public void onOff(){
+	}
+
+	public void cambiarFrecuencia(){
+	}
+
+	public void avanzar(){
+	}
+
+	public void guardar(int boton){
+	}
+
+	public void seleccionarEmisora(int boton){
+	}
+
 	/*Setters y Getters*/
 
 	public String getCanal(){
