@@ -51,7 +51,7 @@ public class Radio implements Funcionalidades{
 	 * @return String de Canal y estacion de radio cocatenados
 	 */
 	public String estacionActual(){
-		return getCanal()+"-"+String.format("%.1f",getEstacion());
+		return this.canal+"-"+String.format("%.1f",this.estacion)+"\nFavoritas:" + this.favoritas.toString();
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class Radio implements Funcionalidades{
 	 * @return true(encendido) o false(apagado)
 	 */
 	public boolean estado(){
-		return getEstado();
+		return this.estado;
 	}
 
 	/**
@@ -67,10 +67,10 @@ public class Radio implements Funcionalidades{
 	 * Si esta encendida la apaga y viceversa.
 	 */
 	public void onOff(){
-		if(getEstado()){
-			setEstado(false);
+		if(this.estado){
+			this.estado = false;
 		}else{
-			setEstado(true);
+			this.estado = true;
 		}
 	}
 
@@ -132,45 +132,5 @@ public class Radio implements Funcionalidades{
 			this.canal = separacion[0];
 			this.estacion = Float.parseFloat(separacion[1]);
 		}
-	}
-
-	/**Setters y Getters*/
-
-	public String getCanal(){
-		return this.canal;
-	}
-
-	public void setCanal(String canal){
-		this.canal = canal;
-	}
-
-	public float getEstacion(){
-		return this.estacion;
-	}
-	
-	public void setEstacion(float estacion){
-		this.estacion = estacion;
-	}
-
-	public boolean getEstado(){
-		return this.estado;
-	}
-
-	public void setEstado(boolean estado){
-		this.estado = estado;
-	}
-
-	public ArrayList getFavoritas(){
-		return this.favoritas;
-	}
-
-	public void setFavoritas(ArrayList favoritas){
-		this.favoritas = favoritas;
-	}
-
-	/**Método toString */
-	public String toString(){
-		String cad = "Canal: "+(this.canal)+" Estacion: "+String.valueOf(this.estacion)+" Estado: "+String.valueOf(this.estado)+" Favoritas:"+this.favoritas.toString();
-		return cad;
 	}
 }

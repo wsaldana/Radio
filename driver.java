@@ -1,9 +1,6 @@
 /**********************************************************
 *Driver.java					Fecha de creación: 16/01/2020
-*							    Última fecha de modificación: 18/01/2020
-*Autores del programa:
-*		>Andrea Amaya 19357
-*		>Walter Saldana 19897							
+*							    Última fecha de modificación: 19/01/2020						
 *Clase para interactuar con el usuario
 
 *@author Andrea Amaya #19357
@@ -46,18 +43,21 @@ public class driver{
 				} else { //Opcion inexistente
 					System.out.println(" La opcion no existe!!!!");
 				}
+				System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() + "\n_______________\n");
+
 			} else if (!radio.estado()) { //La radio está apagada
 				if (opcion==1) { //Encender radio
-					System.out.println(" Hola :) ");
+					System.out.println("_______________\n Hola :) \n_______________");
 					radio.onOff();
+					System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() + "\n_______________\n");
 				} else if (opcion == 7) { //Se cierra el programa
-					System.out.println(" Vuelve pronto :) ");
+					System.out.println("_______________\n Vuelve pronto :) \n_______________");
 					break;
 				} else{
-					System.out.println(" Primero enciende la radio ");
+					System.out.println("_______________\n Primero enciende la radio \n_______________");
 				}
 			}
-			System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() +"\nFavoritas: "+radio.getFavoritas().toString()+"\n_______________\n");
+			
 		}
 	}
 }
