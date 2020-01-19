@@ -13,20 +13,18 @@ public class driver{
 		//Se manda a llamar el escaner y el controlador
 		Scanner scan = new Scanner(System.in);
 		Radio radio = new Radio();
-		int opcion = 0;
 
 		//Se correrá el programa mientras esté encendida la radio
-		while(opcion!=7){
+		while(true){
 			//Se pide la opcion a realizar
 			System.out.println("_______________________________________\n         ESCOJA LA ACCION A REALIZAR:          \n_______________________________________");
-			System.out.println("1. Prender el radio\n2. Cambiar a AM/FM\n3. Siguiente emisora\n4. Guardar emisora\n5. Escoger emisora guardada\n6. Apagar el radio\nElija la opcion:");
+			System.out.println("1. Prender el radio\n2. Cambiar a AM/FM\n3. Siguiente emisora\n4. Guardar emisora\n5. Escoger emisora guardada\n6. Apagar el radio\n7. Salir\nElija la opcion:");
+			int opcion = scan.nextInt();
 			
-			if (opcion==1) { //Encender radio
-				System.out.println(" Hola :) ");
-				radio.onOff();
-			} else if (radio.estado()) { //Si la radio está encendida 
-				System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() + "\n_______________\n");
-				if (opcion == 2) { //Cambiar AM/FM
+			if (radio.estado()) { //Si la radio está encendida 
+				if (opcion==1) { //Encender radio
+					System.out.println("La radio ya estaba encendida");
+				} else if (opcion == 2) { //Cambiar AM/FM
 					radio.cambiarFrecuencia();
 				} else if (opcion == 3) { //Siguiente emisora
 					radio.avanzar();
@@ -36,17 +34,28 @@ public class driver{
 				} else if (opcion == 5) { //Seleccionar emisora guardada
 					System.out.println("Elija el numero de boton a escuchar: ");
 					radio.seleccionarEmisora(scan.nextInt());
-				} else { //Apagar la radio
+				} else if (opcion == 6){ //Apagar la radio
 					System.out.println(" Adios :) ");
 					radio.onOff();
-				} 
+				} if (opcion == 7) { //Se cierra el programa
+					System.out.println(" Vuelve pronto :) ");
+					break;
+				} else { //Opcion inexistente
+					System.out.println(" La opcion no existe ");
+				}
 			} else if (!radio.estado()) { //La radio está apagada
-				System.out.println(" Primero enciende la radio ");
-			} else if (opcion == 7) { //Se cierra el programa
-				System.out.println(" Vuelve pronto :) ");
-			} else { //Opcion inexistente
-				System.out.println(" La opcion no existe ");
+				if (opcion==1) { //Encender radio
+					System.out.println(" Hola :) ");
+					radio.onOff();
+				} if (opcion == 7) { //Se cierra el programa
+					System.out.println(" Vuelve pronto :) ");
+					break;
+				} else{
+					System.out.println(" Primero enciende la radio ");
+				}
 			}
+			System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() + "\n_______________\n");
+			System.out.println(radio.toString());
 		}
 	}
 }
