@@ -35,7 +35,7 @@ public class Radio implements Funcionalidades{
 	/*Implementación de métodos*/
 
 	public String estacionActual(){
-		return getCanal()+"-"+String.valueOf(getEstacion());
+		return getCanal()+"-"+String.format("%.1f",getEstacion());
 	}
 
 	public boolean estado(){
@@ -62,13 +62,13 @@ public class Radio implements Funcionalidades{
 
 	public void avanzar(){
 		if(this.canal.equals("AM")){
-			if(this.estacion >= 1610){
+			if(this.estacion >= 1609){
 				this.estacion = 530;
 			}else{
 				this.estacion += 10;
 			}
 		}else if(this.canal.equals("FM")){
-			if(this.estacion >= 108.0){
+			if(this.estacion >= 107.99){
 				this.estacion = 88.0f;
 			}else{
 				this.estacion += 0.2f;
@@ -78,12 +78,12 @@ public class Radio implements Funcionalidades{
 
 	public void guardar(int boton){
 		if(boton>=1 && boton<=12){
-			this.favoritas.set(boton,this.canal+"-"+String.valueOf(this.estacion));
+			this.favoritas.set(boton-1,this.canal+"-"+String.format("%.1f",this.estacion));
 		}
 	}
 
 	public void seleccionarEmisora(int boton){
-		String seleccion = this.favoritas.get(boton);
+		String seleccion = this.favoritas.get(boton-1);
 		if(!seleccion.equals("")){
 			String[] separacion = seleccion.split("-");
 			this.canal = separacion[0];
