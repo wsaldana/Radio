@@ -37,25 +37,24 @@ public class driver{
 				} else if (opcion == 6){ //Apagar la radio
 					System.out.println(" Adios :) ");
 					radio.onOff();
-				} if (opcion == 7) { //Se cierra el programa
+				} else if (opcion == 7) { //Se cierra el programa
 					System.out.println(" Vuelve pronto :) ");
 					break;
 				} else { //Opcion inexistente
-					System.out.println(" La opcion no existe ");
+					System.out.println(" La opcion no existe!!!!");
 				}
 			} else if (!radio.estado()) { //La radio está apagada
 				if (opcion==1) { //Encender radio
 					System.out.println(" Hola :) ");
 					radio.onOff();
-				} if (opcion == 7) { //Se cierra el programa
+				} else if (opcion == 7) { //Se cierra el programa
 					System.out.println(" Vuelve pronto :) ");
 					break;
 				} else{
 					System.out.println(" Primero enciende la radio ");
 				}
 			}
-			System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() + "\n_______________\n");
-			System.out.println(radio.toString());
+			System.out.println("\n_______________\nESTAS EN LA ESTACION " + radio.estacionActual() +"\nFavoritas: "+radio.getFavoritas().toString()+"\n_______________\n");
 		}
 	}
 }
