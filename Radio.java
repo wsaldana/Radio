@@ -16,9 +16,12 @@ public class Radio implements Funcionalidades{
 	/*Método constructor sin parámetros con valores default*/
 	public Radio(){
 		this.canal = "FM";
-		this.estacion = 88.0;
-		this.estado = true;
+		this.estacion = 88.0f;
+		this.estado = false;
 		this.favoritas = new ArrayList();
+		for(int i=0; i<12; i++){
+			favoritas.add("");
+		}
 	}
 
 	/*Método constructor con parámetros*/
@@ -32,24 +35,60 @@ public class Radio implements Funcionalidades{
 	/*Implementación de métodos*/
 
 	public String estacionActual(){
+		return getCanal()+"-"+String.valueOf(getEstacion());
 	}
 
 	public boolean estado(){
+		return getEstado();
 	}
 
 	public void onOff(){
+		if(getEstado()){
+			setEstado(false);
+		}else{
+			setEstado(true);
+		}
 	}
 
 	public void cambiarFrecuencia(){
+		if(this.canal.equals("AM")){
+			this.canal = "FM";
+			this.estacion = 88.0f;
+		}else if(this.canal.equals("FM")){
+			this.canal = "AM";
+			this.estacion = 530;
+		}
 	}
 
 	public void avanzar(){
+		if(this.canal.equals("AM")){
+			if(this.estacion >= 1610){
+				this.estacion = 530;
+			}else{
+				this.estacion += 10;
+			}
+		}else if(this.canal.equals("FM")){
+			if(this.estacion >= 108.0){
+				this.estacion = 88.0f;
+			}else{
+				this.estacion += 0.2f;
+			}
+		}
 	}
 
 	public void guardar(int boton){
+		if(boton>=1 && boton<=12){
+			this.favoritas.set(boton,this.canal+"-"+String.valueOf(this.estacion));
+		}
 	}
 
 	public void seleccionarEmisora(int boton){
+		String seleccion = this.favoritas.get(boton);
+		if(!seleccion.equals("")){
+			String[] separacion = seleccion.split("-");
+			this.canal = separacion[0];
+			this.estacion = Float.parseFloat(separacion[1]);
+		}
 	}
 
 	/*Setters y Getters*/
@@ -87,7 +126,8 @@ public class Radio implements Funcionalidades{
 	}
 
 	/*Método toString */
-	public void toString(){
-		return "Canal: "+this.canal+" Estacion: "+this.estacion+" Estado: "+this.estado+" Favoritas:"+this.favoritas;
+	public String toString(){
+		String cad = "Canal: "+(this.canal)+" Estacion: "+String.valueOf(this.estacion)+" Estado: "+String.valueOf(this.estado)+" Favoritas:"+this.favoritas.toString();
+		return cad;
 	}
 }
