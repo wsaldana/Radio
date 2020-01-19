@@ -1,10 +1,13 @@
 /**********************************************************
-Driver.java					Fecha de creación: 16/01/2020
-							Última fecha de modificación: 16/01/2020
-Autores del programa:
-		>Andrea Amaya 19357
-		>Walter Saldana 19897							
-Clase para interactuar con el usuario
+*Driver.java					Fecha de creación: 16/01/2020
+*							    Última fecha de modificación: 18/01/2020
+*Autores del programa:
+*		>Andrea Amaya 19357
+*		>Walter Saldana 19897							
+*Clase para interactuar con el usuario
+
+*@author Andrea Amaya #19357
+*@author Walter Saldaña #19897
 **********************************************************/
 import java.util.Scanner;
 

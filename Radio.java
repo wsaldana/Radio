@@ -1,19 +1,25 @@
 /**********************************************************
-Radio.java					Fecha de creación: 16/01/2020
-							Última fecha de modificación: 16/01/2020
-							
-Lleva el control del estado del radio.
+*Radio.java					Fecha de creación: 16/01/2020
+*							Última fecha de modificación: 18/01/2020
+*							
+*Lleva el control del estado del radio.
+*Importa el paquete java.util
+*
+*@author Andrea Amaya #19357
+*@author Walter Saldaña #19897
 **********************************************************/
 import java.util.*;
 
 public class Radio implements Funcionalidades{
-	/*Declaración de atributos*/
+	/**Declaración de atributos*/
 	private String canal;
 	private float estacion;
 	private boolean estado;
 	private ArrayList<String> favoritas;
 
-	/*Método constructor sin parámetros con valores default*/
+	/**
+	 * Método constructor sin parámetros con valores default
+	*/
 	public Radio(){
 		this.canal = "FM";
 		this.estacion = 88.0f;
@@ -24,7 +30,13 @@ public class Radio implements Funcionalidades{
 		}
 	}
 
-	/*Método constructor con parámetros*/
+	/**
+	 * Método constructor con parámetros
+	 * @param canal		Si es AM o FM
+	 * @param estacion  El número de la estación de radio
+	 * @param estado	True para encendida y False para apagado
+	 * @param favoritas Arraylist que almacena las estaciones favoritas
+	*/
 	public Radio(String canal, float estacion, boolean estado, ArrayList favoritas){
 		this.canal = canal;
 		this.estacion = estacion;
@@ -32,16 +44,28 @@ public class Radio implements Funcionalidades{
 		this.favoritas = favoritas;
 	}
 
-	/*Implementación de métodos*/
+	/**Implementación de métodos*/
 
+	/**
+	 * Método para obtener los valores actuales del canal y estacion de la radio.
+	 * @return String de Canal y estacion de radio cocatenados
+	 */
 	public String estacionActual(){
 		return getCanal()+"-"+String.format("%.1f",getEstacion());
 	}
 
+	/**
+	 * Metodo para verificar si el radio esta encendido o apagado.
+	 * @return true(encendido) o false(apagado)
+	 */
 	public boolean estado(){
 		return getEstado();
 	}
 
+	/**
+	 * Método para encender y apagar la radio. 
+	 * Si esta encendida la apaga y viceversa.
+	 */
 	public void onOff(){
 		if(getEstado()){
 			setEstado(false);
@@ -50,6 +74,11 @@ public class Radio implements Funcionalidades{
 		}
 	}
 
+	/**
+	 * Método que cambia el canal de la radio.
+	 * Si esta en AM lo cambia a FM y viceversa.
+	 * Ya que AM y FM tienen distintos formatos de estaciones, estas también se cambian.
+	 */
 	public void cambiarFrecuencia(){
 		if(this.canal.equals("AM")){
 			this.canal = "FM";
@@ -60,14 +89,20 @@ public class Radio implements Funcionalidades{
 		}
 	}
 
+	/**
+	 * Método que permite cambiar a la siguiente estación de radio
+	 */
 	public void avanzar(){
+		//Evaluar el tipo de canal por sus diferentes formatos
 		if(this.canal.equals("AM")){
+			//Por la pérdida de precisión decimal, 1609 se aproxima a 1610
 			if(this.estacion >= 1609){
 				this.estacion = 530;
 			}else{
 				this.estacion += 10;
 			}
 		}else if(this.canal.equals("FM")){
+			//Por la pérdida de presición decimal, 107.99 aproxima a 108.0
 			if(this.estacion >= 107.99){
 				this.estacion = 88.0f;
 			}else{
@@ -76,12 +111,20 @@ public class Radio implements Funcionalidades{
 		}
 	}
 
+	/**
+	 * Método para guardar la estación actual en la lista de favoritos.
+	 * @param boton  Número entero de la posición de lista donde se guardará la estación 
+	 */
 	public void guardar(int boton){
 		if(boton>=1 && boton<=12){
 			this.favoritas.set(boton-1,this.canal+"-"+String.format("%.1f",this.estacion));
 		}
 	}
 
+	/**
+	 * Método para poner una de las estaciones guardadas como favoritas.
+	 * @param boton  Posición en la lista de la estación a poner en radio.
+	 */
 	public void seleccionarEmisora(int boton){
 		String seleccion = this.favoritas.get(boton-1);
 		if(!seleccion.equals("")){
@@ -91,7 +134,7 @@ public class Radio implements Funcionalidades{
 		}
 	}
 
-	/*Setters y Getters*/
+	/**Setters y Getters*/
 
 	public String getCanal(){
 		return this.canal;
@@ -125,7 +168,7 @@ public class Radio implements Funcionalidades{
 		this.favoritas = favoritas;
 	}
 
-	/*Método toString */
+	/**Método toString */
 	public String toString(){
 		String cad = "Canal: "+(this.canal)+" Estacion: "+String.valueOf(this.estacion)+" Estado: "+String.valueOf(this.estado)+" Favoritas:"+this.favoritas.toString();
 		return cad;
