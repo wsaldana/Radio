@@ -10,7 +10,7 @@
 **********************************************************/
 import java.util.*;
 
-public class Radio implements Funcionalidades{
+public class Radio implements RadioInterface{
 	/**Declaración de atributos*/
 	private String canal;
 	private float estacion;
