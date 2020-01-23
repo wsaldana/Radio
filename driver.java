@@ -12,7 +12,7 @@ public class driver{
 	public static void main(String[] args) {
 		//Se manda a llamar el escaner y el controlador
 		Scanner scan = new Scanner(System.in);
-		Funcionalidades radio = new Radio();
+		Radio radio = new Radio();
 
 		//Se correrá el programa mientras esté encendida la radio
 		while(true){
