@@ -133,4 +133,44 @@ public class Radio implements Funcionalidades{
 			this.estacion = Float.parseFloat(separacion[1]);
 		}
 	}
+
+
+	/*Setters y Getters*/
+
+	public String getCanal(){
+		return this.canal;
+	}
+
+	public void setCanal(String canal){
+		this.canal = canal;
+	}
+
+	public float getEstacion(){
+		return this.estacion;
+	}
+
+	public void setEstacion(float estacion){
+		this.estacion = estacion;
+	}
+
+	public boolean getEstado(){
+		return this.estado;
+	}
+
+	public void setEstado(boolean estado){
+		this.estado = estado;
+	}
+
+	public ArrayList getFavoritas(){
+		return this.favoritas;
+	}
+
+	public void setFavoritas(ArrayList favoritas){
+		this.favoritas = favoritas;
+	}
+
+	/*Método toString */
+	public String toString(){
+		return "Canal: "+(this.canal)+" Estacion: "+String.valueOf(this.estacion)+" Estado: "+String.valueOf(this.estado)+" Favoritas:"+String.valueOf(this.favoritas);
+	}
 }
