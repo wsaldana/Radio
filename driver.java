@@ -17,9 +17,18 @@ public class driver{
 		//Se correrá el programa mientras esté encendida la radio
 		while(true){
 			//Se pide la opcion a realizar
+			int opcion = 0;
+			int boton = 1;
+
 			System.out.println("_______________________________________\n         ESCOJA LA ACCION A REALIZAR:          \n_______________________________________");
 			System.out.println("1. Prender el radio\n2. Cambiar a AM/FM\n3. Siguiente emisora\n4. Guardar emisora\n5. Escoger emisora guardada\n6. Apagar el radio\n7. Salir\nElija la opcion:");
-			int opcion = scan.nextInt();
+			String posible = scan.next();
+			//Defensiva
+			try {
+				opcion =Integer.parseInt(posible);
+			} catch (Exception e){
+				System.out.println("Ingresa un numero entero");	
+			}
 			
 			if (radio.estado()) { //Si la radio está encendida 
 				if (opcion==1) { //Encender radio
@@ -30,10 +39,26 @@ public class driver{
 					radio.avanzar();
 				} else if (opcion == 4) { //Guardar emisora
 					System.out.println("Elija el numero de boton donde se guardara: ");
-					radio.guardar(scan.nextInt());
+					String botonposible = scan.next();
+					//Defensiva
+					try {
+						boton =Integer.parseInt(botonposible);
+					} catch (Exception e){
+						System.out.println("Ingresa un numero entero");	
+					}
+					//Se guarda
+					radio.guardar(boton);
 				} else if (opcion == 5) { //Seleccionar emisora guardada
 					System.out.println("Elija el numero de boton a escuchar: ");
-					radio.seleccionarEmisora(scan.nextInt());
+					String botonposible = scan.next();
+					//Defensiva
+					try {
+						boton =Integer.parseInt(botonposible);
+					} catch (Exception e){
+						System.out.println("Ingresa un numero entero");	
+					}
+					//Se escucha
+					radio.seleccionarEmisora(boton);
 				} else if (opcion == 6){ //Apagar la radio
 					System.out.println(" Adios :) ");
 					radio.onOff();
